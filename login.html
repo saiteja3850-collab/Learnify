@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learnify Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #00ff8c, #ff2f00);
+            overflow: hidden;
+        }
+        /* Animated Background */
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .15);
+            animation: float 8s infinite ease-in-out;
+        }
+        
+        .circle:nth-child(1) {
+            width: 180px;
+            height: 180px;
+            top: 8%;
+            left: 8%;
+        }
+        
+        .circle:nth-child(2) {
+            width: 250px;
+            height: 250px;
+            bottom: 5%;
+            right: 8%;
+            animation-duration: 10s;
+        }
+        
+        .circle:nth-child(3) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            left: 25%;
+            animation-duration: 7s;
+        }
+        
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+        /* Login Card */
+        
+        .login-box {
+            width: 380px;
+            padding: 40px;
+            background: rgba(255, 255, 255, .15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .25);
+            animation: fade .8s ease;
+            z-index: 1;
+        }
+        
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .login-box h1 {
+            text-align: center;
+            color: #faf9f9;
+            margin-bottom: 10px;
+        }
+        
+        .login-box p {
+            text-align: center;
+            color: #f6f7f7;
+            margin-bottom: 25px;
+        }
+        /* Inputs */
+        
+        .input-box {
+            margin-bottom: 20px;
+        }
+        
+        .input-box input {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: .3s;
+        }
+        
+        .input-box input:focus {
+            transform: scale(1.03);
+            box-shadow: 0 0 10px white;
+        }
+        /* Button */
+        
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #fff;
+            color: #007BFF;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .3s;
+        }
+        
+        button:hover {
+            background: #007BFF;
+            color: #fff;
+            transform: scale(1.05);
+        }
+        /* Link */
+        
+        .link {
+            margin-top: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        
+        .link a {
+            color: #e7e1e1;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+
+    <div class="login-box">
+
+        <h1>Learnify</h1>
+
+        <p>Welcome Back 👋</p>
+
+        <div class="input-box">
+            <input type="email" id="email" placeholder="Email">
+        </div>
+
+        <div class="input-box">
+            <input type="password" id="password" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter') login()">
+        </div>
+        <label style="display:flex;align-items:center;gap:8px;margin:10px 0 16px;font-size:14px;cursor:pointer;">
+            <input type="checkbox" id="showPassword" onchange="togglePassword()" style="width:auto;"> Show password
+        </label>
+        <p id="loginMessage" role="status" aria-live="polite" style="margin:0 0 12px;font-size:14px;"></p>
+
+        <button onclick="login()">Login</button>
+
+        <div class="link">
+            Don't have an account?
+            <a href="signup.html">Sign Up</a>
+        </div>
+
+    </div>
+
+    <script>
+
+        function togglePassword() {
+            const passwordInput = document.getElementById("password");
+            passwordInput.type = document.getElementById("showPassword").checked ? "text" : "password";
+        }
+
+        function login() {
+            const message = document.getElementById("loginMessage");
+            message.textContent = "";
+            message.style.color = "#b91c1c";
+            const email = document.getElementById("email").value.trim().toLowerCase();
+            const password = document.getElementById("password").value;
+
+            if (!email || !password) {
+                message.textContent = "Please enter your email and password.";
+                return;
+            }
+
+            // One-time migration from the old single-user storage format.
+            let users = JSON.parse(localStorage.getItem("users") || "[]");
+            const oldUser = JSON.parse(localStorage.getItem("user") || "null");
+            if (oldUser && oldUser.email && !users.some(u => u.email.toLowerCase() === oldUser.email.toLowerCase())) {
+                oldUser.id = oldUser.email.toLowerCase();
+                oldUser.email = oldUser.email.toLowerCase();
+                users.push(oldUser);
+                localStorage.setItem("users", JSON.stringify(users));
+
+                const enrollments = JSON.parse(localStorage.getItem("enrollments") || "{}");
+                if (!enrollments[oldUser.email]) {
+                    enrollments[oldUser.email] = JSON.parse(localStorage.getItem("enrolledCourses") || "[]");
+                }
+                localStorage.setItem("enrollments", JSON.stringify(enrollments));
+            }
+
+            const user = users.find(u => u.email.toLowerCase() === email && u.password === password);
+            if (!user) {
+                message.textContent = "Incorrect email or password. Please try again.";
+                return;
+            }
+
+            message.style.color = "#15803d";
+            message.textContent = "Password correct! Logging you in...";
+
+            localStorage.setItem("currentUser", JSON.stringify({
+                id: user.id || user.email,
+                name: user.name,
+                email: user.email
+            }));
+            // Remove legacy shared session keys so they cannot be mistaken for the active account.
+            localStorage.removeItem("user");
+            localStorage.removeItem("loggedIn");
+
+            alert("Login successful!");
+            window.location.href = "index.html";
+        }
+
+    </script>
+
+</body>
+
+</html>

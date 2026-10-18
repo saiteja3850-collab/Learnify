@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learnify - Home</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f5f7ff;
+        }
+        /* Navbar */
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 15px 4%;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: blue;
+        }
+        
+        .logo img {
+            inline-size: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+        
+        .nav-links,
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .nav-links a,
+        .nav-buttons a {
+            text-decoration: none;
+            color: black;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .nav-links a:hover {
+            color: blue;
+        }
+        
+        .nav-buttons .sign {
+            background-color: blue;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 5px;
+        }
+        
+        #welcome {
+            font-size: 0.9rem;
+        }
+        /* Hero section */
+        
+        .hero-container {
+            padding: 5%;
+            background-image: url("./images/hero-section.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .learn {
+            color: blue;
+            font-weight: bold;
+        }
+        
+        .hero-container h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            margin: 15px 0;
+        }
+        
+        .description {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .hero-buttons button {
+            padding: 12px 18px;
+            margin: 8px 8px 0 0;
+            color: blue;
+            border: 1px solid blue;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+        }
+        
+        .hero-buttons button:hover {
+            background-color: blue;
+            color: white;
+        }
+        /* Courses section */
+        
+        .courses-container {
+            padding: 30px 4%;
+        }
+        
+        .courses-container>h2 {
+            text-align: center;
+            color: blue;
+            margin-bottom: 30px;
+        }
+        
+        .cards-parent {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+        }
+        
+        .card {
+            min-width: 0;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card img {
+            display: block;
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        
+        .card-body {
+            padding: 15px;
+        }
+        
+        .card-title {
+            margin: 0 0 10px;
+            font-size: 1.1rem;
+        }
+        
+        .card-description,
+        .rating {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .rating {
+            margin-bottom: 0;
+        }
+        /* Tablet */
+        
+        @media (max-width: 1000px) {
+            .cards-parent {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .navbar {
+                justify-content: center;
+            }
+        }
+        /* Mobile */
+        
+        @media (max-width: 600px) {
+            .cards-parent {
+                grid-template-columns: 1fr;
+            }
+            .navbar {
+                flex-direction: column;
+            }
+            .nav-links,
+            .nav-buttons {
+                justify-content: center;
+            }
+            .hero-container {
+                padding: 35px 6%;
+            }
+            .card img {
+                height: 190px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            <img src="./images/logo.png" alt="Learnify Logo">
+            <span>Learnify</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="courses.html">Courses</a>
+            <a href="my-courses.html">My Courses</a>
+        </div>
+
+        <div class="nav-buttons">
+            <span id="welcome"></span>
+
+            <a href="login.html" id="loginBtn">Login</a>
+
+            <a href="signup.html" class="sign" id="signupBtn">
+                Sign Up
+            </a>
+
+            <a href="#" id="logoutBtn" onclick="logout(event)" style="display:none;">
+                Logout
+            </a>
+        </div>
+
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-container">
+
+        <div class="learn-block">
+            <p class="learn">Learn. Grow. Succeed.</p>
+
+            <h1>
+                Learn New Skills <br>
+                <span style="color:blue;">Anywhere</span>
+            </h1>
+
+            <p class="description">
+                Access quality courses from expert instructors and advance your career.
+            </p>
+
+            <div class="hero-buttons">
+                <button onclick="browseCourses()">
+                    Browse Courses
+                </button>
+
+                <button onclick="howItWorks()">
+                    How it works
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- All Courses -->
+    <section class="courses-container" id="courses">
+
+        <h2>Popular Courses</h2>
+
+        <div class="cards-parent">
+
+            <!-- Web Development -->
+            <div class="card">
+                <img src="./images/web.png" alt="Web Development">
+                <div class="card-body">
+                    <h3 class="card-title">Web Development</h3>
+                    <p class="card-description">
+                        Learn HTML, CSS, JavaScript and build websites.
+                    </p>
+                    <p class="rating">⭐ 4.8 | 12k+ students</p>
+                </div>
+            </div>
+
+            <!-- Data Science -->
+            <div class="card">
+                <img src="./images/data science.png" alt="Data Science">
+                <div class="card-body">
+                    <h3 class="card-title">Data Science</h3>
+                    <p class="card-description">
+                        Explore data analysis, visualization and machine learning.
+                    </p>
+                    <p class="rating">⭐ 4.7 | 8k+ students</p>
+                </div>
+            </div>
+
+            <!-- UI/UX -->
+            <div class="card">
+                <img src="./images/ui-ux.png" alt="UI UX Design">
+                <div class="card-body">
+                    <h3 class="card-title">UI/UX Design</h3>
+                    <p class="card-description">
+                        Learn design principles and create stunning interfaces.
+                    </p>
+                    <p class="rating">⭐ 4.6 | 6k+ students</p>
+                </div>
+            </div>
+
+            <!-- Digital Marketing -->
+            <div class="card">
+                <img src="./images/digital.png" alt="Digital Marketing">
+                <div class="card-body">
+                    <h3 class="card-title">Digital Marketing</h3>
+                    <p class="card-description">
+                        Learn SEO, social media and grow your brand.
+                    </p>
+                    <p class="rating">⭐ 4.9 | 10k+ students</p>
+                </div>
+            </div>
+
+            <!-- C Programming -->
+            <div class="card">
+                <img src="./images/c.png" alt="C Programming">
+                <div class="card-body">
+                    <h3 class="card-title">C Programming</h3>
+                    <p class="card-description">
+                        Learn variables, loops, arrays, pointers and functions.
+                    </p>
+                    <p class="rating">⭐ 4.8 | Beginner Level</p>
+                </div>
+            </div>
+
+            <!-- C++ -->
+            <div class="card">
+                <img src="./images/c++.png" alt="C++ Programming">
+                <div class="card-body">
+                    <h3 class="card-title">C++ Programming</h3>
+                    <p class="card-description">
+                        Learn OOP, classes, objects and inheritance.
+                    </p>
+                    <p class="rating">⭐ 4.7 | Beginner Level</p>
+                </div>
+            </div>
+
+            <!-- Python -->
+            <div class="card">
+                <img src="./images/python.png" alt="Python Programming">
+                <div class="card-body">
+                    <h3 class="card-title">Python Programming</h3>
+                    <p class="card-description">
+                        Learn Python basics, functions, modules and projects.
+                    </p>
+                    <p class="rating">⭐ 4.9 | Beginner Level</p>
+                </div>
+            </div>
+
+            <!-- Java -->
+            <div class="card">
+                <img src="./images/java.png" alt="Java Programming">
+                <div class="card-body">
+                    <h3 class="card-title">Java Programming</h3>
+                    <p class="card-description">
+                        Learn Java syntax, OOP, exceptions and collections.
+                    </p>
+                    <p class="rating">⭐ 4.8 | Beginner Level</p>
+                </div>
+            </div>
+
+            <!-- DBMS -->
+            <div class="card">
+                <img src="./images/DBMS.png" alt="DBMS">
+                <div class="card-body">
+                    <h3 class="card-title">DBMS</h3>
+                    <p class="card-description">
+                        Learn SQL, database design, normalization and transactions.
+                    </p>
+                    <p class="rating">⭐ 4.7 | Intermediate Level</p>
+                </div>
+            </div>
+
+            <!-- ADS -->
+            <div class="card">
+                <img src="./images/ADS.png" alt="Advanced Data Structures">
+                <div class="card-body">
+                    <h3 class="card-title">ADS</h3>
+                    <p class="card-description">
+                        Learn advanced data structures, trees, graphs and algorithms.
+                    </p>
+                    <p class="rating">⭐ 4.8 | Intermediate Level</p>
+                </div>
+            </div>
+
+            <!-- DS -->
+            <div class="card">
+                <img src="./images/DS.png" alt="Data Structures">
+                <div class="card-body">
+                    <h3 class="card-title">DS</h3>
+                    <p class="card-description">
+                        Learn arrays, linked lists, stacks, queues and trees.
+                    </p>
+                    <p class="rating">⭐ 4.9 | Beginner Level</p>
+                </div>
+            </div>
+
+            <!-- Software Engineering -->
+            <div class="card">
+                <img src="./images/SE.png" alt="Software Engineering">
+                <div class="card-body">
+                    <h3 class="card-title">SE</h3>
+                    <p class="card-description">
+                        Learn software development life cycle, design and testing.
+                    </p>
+                    <p class="rating">⭐ 4.7 | Intermediate Level</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+
+        const user = JSON.parse(localStorage.getItem("currentUser") || "null");
+
+        if (user) {
+            const welcome = document.getElementById("welcome");
+            if (welcome) welcome.textContent = "Welcome, " + (user.name || "User") + " 👋";
+            const loginBtn = document.getElementById("loginBtn");
+            const signupBtn = document.getElementById("signupBtn");
+            const logoutBtn = document.getElementById("logoutBtn");
+            if (loginBtn) loginBtn.style.display = "none";
+            if (signupBtn) signupBtn.style.display = "none";
+            if (logoutBtn) logoutBtn.style.display = "inline";
+        }
+
+        function logout(event) {
+            if (event) event.preventDefault();
+            localStorage.removeItem("currentUser");
+            alert("Logged out successfully.");
+            window.location.href = "login.html";
+        }
+
+        function browseCourses() {
+            const courses = document.getElementById("courses");
+            if (courses) courses.scrollIntoView({ behavior: "smooth" });
+        }
+
+        function howItWorks() {
+            alert("1. Sign up or log in.\\n2. Browse available courses.\\n3. Open the Courses page to enroll.");
+        }
+
+    </script>
+
+</body>
+
+</html>

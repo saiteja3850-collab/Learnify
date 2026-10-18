@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Learnify</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            min-block-size: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        /* Floating bubbles */
+        
+        .bubble {
+            position: absolute;
+            inset-inline-start: -120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.20);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+            animation: bubbleRise linear infinite;
+        }
+        
+        .bubble:nth-child(1) {
+            inline-size: 70px;
+            inset-inline-start: 70px;
+            inset-inline-start: 8%;
+            animation-duration: 12s;
+        }
+        
+        .bubble:nth-child(2) {
+            inline-size: 35px;
+            block-size: 35px;
+            inset-inline-start: 25%;
+            animation-duration: 9s;
+            animation-delay: 2s;
+        }
+        
+        .bubble:nth-child(3) {
+            inline-size: 95px;
+            block-size: 95px;
+            inset-inline-start: 70%;
+            animation-duration: 15s;
+            animation-delay: 1s;
+        }
+        
+        .bubble:nth-child(4) {
+            inline-size: 45px;
+            block-size: 45px;
+            inset-inline-start: 88%;
+            animation-duration: 11s;
+            animation-delay: 3s;
+        }
+        
+        .bubble:nth-child(5) {
+            inline-size: 22px;
+            block-size: 22px;
+            inset-inline-start: 52%;
+            animation-duration: 8s;
+            animation-delay: 4s;
+        }
+        
+        @keyframes bubbleRise {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-50vh) translateX(25px);
+            }
+            100% {
+                transform: translateY(-120vh) translateX(-20px);
+                opacity: 0;
+            }
+        }
+        /* Signup form */
+        
+        .SignUp-box {
+            position: relative;
+            z-index: 1;
+            inline-size: 400px;
+            max-inline-size: 100%;
+            padding: 35px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            animation: formEnter 0.8s ease-out;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .SignUp-box:hover {
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes formEnter {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .SignUp-box h2 {
+            text-align: center;
+            margin-block-end: 25px;
+            color: #333;
+            font-size: 30px;
+        }
+        
+        .Signup-box {
+            margin-block-end: 18px;
+        }
+        
+        .Signup-box input {
+            inline-size: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        
+        .Signup-box input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 8px rgba(102, 126, 234, 0.4);
+            transform: scale(1.02);
+        }
+        /* Button animation */
+        
+        button {
+            inline-size: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        .link {
+            margin-block-start: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .link a {
+            color: #667eea;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .link a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-inline-size: 480px) {
+            .SignUp-box {
+                padding: 28px 22px;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .bubble,
+            .SignUp-box {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Animated background bubbles -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <!-- Signup form -->
+    <div class="SignUp-box">
+
+        <h2>Sign Up</h2>
+
+        <div class="Signup-box">
+            <input type="text" id="name" placeholder="Name" required>
+        </div>
+
+        <div class="Signup-box">
+            <input type="email" id="email" placeholder="Email" required>
+        </div>
+
+        <div class="Signup-box">
+            <input type="password" id="password" placeholder="Password" minlength="6" required>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:8px; margin:-6px 0 18px; color:#555; font-size:14px;">
+            <input type="checkbox" id="showPassword" onchange="toggleSignupPassword()" style="width:auto; margin:0; accent-color:#667eea;">
+            <label for="showPassword" style="cursor:pointer;">Show password</label>
+        </div>
+
+        <button onclick="signup()">Sign Up</button>
+
+        <div class="link">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </div>
+
+    </div>
+
+    <script>
+
+        function toggleSignupPassword() {
+            const passwordInput = document.getElementById("password");
+            passwordInput.type = document.getElementById("showPassword").checked ? "text" : "password";
+        }
+
+        function signup() {
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim().toLowerCase();
+            const password = document.getElementById("password").value;
+
+            if (!name || !email || !password) {
+                alert("Please fill in all fields.");
+                return;
+            }
+            if (password.length < 6) {
+                alert("Password must contain at least 6 characters.");
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem("users") || "[]");
+            if (users.some(u => u.email.toLowerCase() === email)) {
+                alert("An account with this email already exists. Please log in.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            users.push({ id: email, name, email, password });
+            localStorage.setItem("users", JSON.stringify(users));
+
+            // Keep enrollment records separate for every account.
+            const enrollments = JSON.parse(localStorage.getItem("enrollments") || "{}");
+            if (!enrollments[email]) enrollments[email] = [];
+            localStorage.setItem("enrollments", JSON.stringify(enrollments));
+
+            alert("Account created successfully! Please log in.");
+            window.location.href = "login.html";
+        }
+
+    </script>
+
+</body>
+
+</html>

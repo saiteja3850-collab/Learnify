@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Learnify</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: #ffffff;
+            color: #222;
+        }
+        /* Navbar */
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: white;
+            box-shadow: 0 2px 10px #00000010;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: blue;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #222;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover {
+            color: blue;
+        }
+        
+        .nav-buttons a {
+            text-decoration: none;
+            color: #222;
+            font-weight: bold;
+            margin-inline-start: 12px;
+        }
+        
+        .nav-buttons .sign {
+            background: blue;
+            color: white;
+            padding: 11px 16px;
+            border-radius: 6px;
+        }
+        /* Hero section */
+        
+        .about-hero {
+            text-align: center;
+            padding: 85px 20px;
+            background: linear-gradient( 135deg, #f1efff, #e5e2ff, #f8f7ff);
+            animation: fadeIn 1s ease;
+        }
+        
+        .about-hero .tag {
+            color: blue;
+            font-weight: bold;
+            margin-block-end: 18px;
+        }
+        
+        .about-hero h1 {
+            font-size: 3rem;
+            margin-block-end: 20px;
+        }
+        
+        .about-hero h1 span {
+            color: blue;
+        }
+        
+        .about-hero p {
+            max-inline-size: 650px;
+            margin: auto;
+            line-height: 1.8;
+            color: #555;
+            font-size: 1rem;
+        }
+        /* Introduction */
+        
+        .about-content {
+            padding: 65px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 45px;
+        }
+        
+        .about-text {
+            flex: 1;
+            animation: slideLeft 0.9s ease;
+        }
+        
+        .about-text h2 {
+            font-size: 2rem;
+            margin-block-end: 20px;
+        }
+        
+        .about-text h2 span {
+            color: blue;
+        }
+        
+        .about-text p {
+            color: #555;
+            line-height: 1.8;
+            margin-block-end: 15px;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+            animation: slideRight 0.9s ease;
+        }
+        
+        .about-image img {
+            inline-size: 100%;
+            max-inline-size: 450px;
+            border-radius: 18px;
+        }
+        /* Mission and Vision */
+        
+        .mission-section {
+            padding: 60px 7%;
+            background: #f8f7ff;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-block-end: 35px;
+        }
+        
+        .section-title span {
+            color: blue;
+        }
+        
+        .mission-cards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 25px;
+        }
+        
+        .mission-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px #0000000d;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeIn 1s ease;
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px #5145cd20;
+        }
+        
+        .mission-card .icon {
+            font-size: 2.5rem;
+            margin-block-end: 15px;
+        }
+        
+        .mission-card h3 {
+            color: blue;
+            font-size: 1.4rem;
+            margin-block-end: 12px;
+        }
+        
+        .mission-card p {
+            color: #555;
+            line-height: 1.8;
+        }
+        /* Why Choose Us */
+        
+        .why-section {
+            padding: 65px 7%;
+        }
+        
+        .why-cards {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+        
+        .why-card {
+            text-align: center;
+            padding: 25px 18px;
+            border: 1px solid #eeeeff;
+            border-radius: 14px;
+            transition: 0.3s;
+        }
+        
+        .why-card:hover {
+            background: #f2f0ff;
+            transform: translateY(-6px);
+        }
+        
+        .why-card .icon {
+            font-size: 2.3rem;
+            margin-block-end: 15px;
+        }
+        
+        .why-card h3 {
+            font-size: 1.05rem;
+            margin-block-end: 12px;
+        }
+        
+        .why-card p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        /* Call to action */
+        
+        .join-section {
+            text-align: center;
+            margin: 20px 5% 60px;
+            padding: 55px 20px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .join-section h2 {
+            font-size: 2rem;
+            margin-block-end: 15px;
+        }
+        
+        .join-section p {
+            line-height: 1.8;
+            margin-block-end: 25px;
+        }
+        
+        .join-section a {
+            display: inline-block;
+            text-decoration: none;
+            color: blue;
+            background: white;
+            padding: 13px 22px;
+            border-radius: 7px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        
+        .join-section a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px #00000030;
+        }
+        /* Footer */
+        
+        footer {
+            background: #17172c;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            line-height: 1.8;
+        }
+        /* Animations */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-35px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(35px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        /* Responsive design */
+        
+        @media (max-inline-size: 900px) {
+            .why-cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .about-content {
+                padding: 50px 6%;
+                gap: 25px;
+            }
+        }
+        
+        @media (max-inline-size: 600px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                gap: 15px;
+            }
+            .about-hero {
+                padding: 60px 20px;
+            }
+            .about-hero h1 {
+                font-size: 2.2rem;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+            .about-text h2 {
+                font-size: 1.7rem;
+            }
+            .mission-cards,
+            .why-cards {
+                grid-template-columns: 1fr;
+            }
+            .section-title,
+            .join-section h2 {
+                font-size: 1.7rem;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">📚 Learnify</div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="my-courses.html">My Courses</a>
+        </div>
+
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+
+        <p class="tag">ABOUT LEARNIFY</p>
+
+        <h1>
+            Learn Today,
+            <span>Lead Tomorrow</span>
+        </h1>
+
+        <p>
+            Welcome to Learnify! We help learners explore new skills, gain knowledge, and move forward toward their career goals through accessible online learning.
+        </p>
+
+    </section>
+
+    <!-- Who We Are -->
+    <section class="about-content">
+
+        <div class="about-text">
+
+            <h2>
+                Who <span>We Are</span>
+            </h2>
+
+            <p>
+                Learnify is an online learning platform designed to help people discover new skills and knowledge.
+            </p>
+
+            <p>
+                From web development and data science to UI/UX design and digital marketing, learners can explore different subjects in one place.
+            </p>
+
+            <p>
+                Our goal is to make learning simple, flexible, and engaging for students and aspiring professionals.
+            </p>
+
+        </div>
+
+        <div class="about-image">
+            <img src="./images/logo.png" alt="Learnify Logo">
+        </div>
+
+    </section>
+
+    <!-- Mission and Vision -->
+    <section class="mission-section">
+
+        <h2 class="section-title">
+            Our Mission & <span>Vision</span>
+        </h2>
+
+        <div class="mission-cards">
+
+            <div class="mission-card">
+                <div class="icon">🎯</div>
+
+                <h3>Our Mission</h3>
+
+                <p>
+                    To make quality learning accessible and engaging for everyone, helping learners develop useful skills and grow with confidence.
+                </p>
+            </div>
+
+            <div class="mission-card">
+                <div class="icon">🌟</div>
+
+                <h3>Our Vision</h3>
+
+                <p>
+                    To create a learning community where people can continuously explore knowledge, improve their abilities, and work toward their ambitions.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Why Choose Learnify -->
+    <section class="why-section">
+
+        <h2 class="section-title">
+            Why Choose <span>Learnify?</span>
+        </h2>
+
+        <div class="why-cards">
+
+            <div class="why-card">
+                <div class="icon">👨‍🏫</div>
+
+                <h3>Expert Learning</h3>
+
+                <p>
+                    Explore courses that help you understand important concepts.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="icon">⏰</div>
+
+                <h3>Flexible Learning</h3>
+
+                <p>
+                    Learn at your own pace and fit learning into your schedule.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="icon">💻</div>
+
+                <h3>Practical Skills</h3>
+
+                <p>
+                    Discover technology, design, and marketing skills for your development.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="icon">🚀</div>
+
+                <h3>Grow Your Future</h3>
+
+                <p>
+                    Keep learning and take steps toward your personal and career goals.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Join Learnify -->
+    <section class="join-section">
+
+        <h2>Start Your Learning Journey!</h2>
+
+        <p>
+            Discover courses, learn new skills, and take the next step toward your goals with Learnify.
+        </p>
+
+        <a href="courses.html">Explore Courses →</a>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+
+        <h3>📚 Learnify</h3>
+
+        <p>Learn. Grow. Succeed.</p>
+
+        <p>
+            &copy; 2026 Learnify. All rights reserved.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

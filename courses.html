@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learnify - Courses</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #f5f7ff;
+        }
+        /* Navbar */
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: blue;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: black;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        
+        .nav-links a:hover {
+            color: blue;
+        }
+        /* Heading */
+        
+        .courses-header {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+        
+        .courses-header h1 {
+            color: blue;
+            margin-block-end: 10px;
+        }
+        
+        .courses-header p {
+            color: #555;
+        }
+        /* Course cards */
+        
+        .courses-container {
+            inline-size: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            padding: 30px 0 50px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            transition: 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card img {
+            inline-size: 100%;
+            block-size: 180px;
+            object-fit: cover;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .card-body h2 {
+            margin-block-start: 0;
+        }
+        
+        .description {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .details {
+            font-size: 14px;
+            margin: 15px 0;
+        }
+        
+        .enroll-btn {
+            inline-size: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: blue;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .enroll-btn:hover {
+            background-color: darkblue;
+        }
+        /* Responsive */
+        
+        @media (max-inline-size: 1000px) {
+            .courses-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-inline-size: 600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .courses-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            <span>Learnify</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="my-courses.html">My Courses</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Page Heading -->
+    <section class="courses-header">
+
+        <h1>Our Courses</h1>
+
+        <p>
+            Learn new skills from expert instructors and grow your career.
+        </p>
+
+    </section>
+
+
+    <!-- Courses -->
+    <section class="courses-container">
+
+        <!-- Web Development -->
+        <div class="card">
+
+            <img src="./images/web.png" alt="Web Development">
+
+            <div class="card-body">
+
+                <h2>Web Development</h2>
+
+                <p class="description">
+                    Learn HTML, CSS, JavaScript and build modern websites.
+                </p>
+
+                <p class="details">
+                    ⭐ 4.8 &nbsp; | &nbsp; 12k+ students
+                </p>
+
+                <button class="enroll-btn" onclick="enrollCourse('Web Development')">
+                    Enroll Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Data Science -->
+        <div class="card">
+
+            <img src="./images/data science.png" alt="Data Science">
+
+            <div class="card-body">
+
+                <h2>Data Science</h2>
+
+                <p class="description">
+                    Explore data analysis, visualization and machine learning.
+                </p>
+
+                <p class="details">
+                    ⭐ 4.7 &nbsp; | &nbsp; 8k+ students
+                </p>
+
+                <button class="enroll-btn" onclick="enrollCourse('Data Science')">
+                    Enroll Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- UI UX -->
+        <div class="card">
+
+            <img src="./images/ui-ux.png" alt="UI UX Design">
+
+            <div class="card-body">
+
+                <h2>UI/UX Design</h2>
+
+                <p class="description">
+                    Learn design principles and create stunning user interfaces.
+                </p>
+
+                <p class="details">
+                    ⭐ 4.6 &nbsp; | &nbsp; 6k+ students
+                </p>
+
+                <button class="enroll-btn" onclick="enrollCourse('UI/UX Design')">
+                    Enroll Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Digital Marketing -->
+        <div class="card">
+
+            <img src="./images/digital.png" alt="Digital Marketing">
+
+            <div class="card-body">
+
+                <h2>Digital Marketing</h2>
+
+                <p class="description">
+                    Learn SEO, social media and grow your brand.
+                </p>
+
+                <p class="details">
+                    ⭐ 4.9 &nbsp; | &nbsp; 10k+ students
+                </p>
+
+                <button class="enroll-btn" onclick="enrollCourse('Digital Marketing')">
+                    Enroll Now
+                </button>
+
+            </div>
+
+        </div>
+        <!-- C Programming -->
+        <div class="card">
+            <img src="./images/c.png" alt="C Programming">
+            <div class="card-body">
+                <h2>C Programming</h2>
+                <p class="description">
+                    Learn variables, loops, arrays, pointers and functions.
+                </p>
+                <p class="details">⭐ 4.8 | Beginner Level</p>
+                <button class="enroll-btn" onclick="enrollCourse('C Programming')">
+            Enroll Now
+        </button>
+            </div>
+        </div>
+
+        <!-- C++ Programming -->
+        <div class="card">
+            <img src="./images/c++.png" alt="C++ Programming">
+            <div class="card-body">
+                <h2>C++ Programming</h2>
+                <p class="description">
+                    Learn object-oriented programming, classes and inheritance.
+                </p>
+                <p class="details">⭐ 4.7 | Beginner Level</p>
+                <button class="enroll-btn" onclick="enrollCourse('C++ Programming')">
+            Enroll Now
+        </button>
+            </div>
+        </div>
+
+        <!-- Python -->
+        <div class="card">
+            <img src="./images/python.png" alt="Python Programming">
+            <div class="card-body">
+                <h2>Python Programming</h2>
+                <p class="description">
+                    Learn Python basics, functions, modules and projects.
+                </p>
+                <p class="details">⭐ 4.9 | Beginner Level</p>
+                <button class="enroll-btn" onclick="enrollCourse('Python Programming')">
+            Enroll Now
+        </button>
+            </div>
+        </div>
+
+        <!-- Java -->
+        <div class="card">
+            <img src="./images/java.png" alt="Java Programming">
+            <div class="card-body">
+                <h2>Java Programming</h2>
+                <p class="description">
+                    Learn Java syntax, OOP, exception handling and collections.
+                </p>
+                <p class="details">⭐ 4.8 | Beginner Level</p>
+                <button class="enroll-btn" onclick="enrollCourse('Java Programming')">
+            Enroll Now
+        </button>
+            </div>
+        </div>
+
+        <!-- DBMS -->
+        <div class="card">
+            <img src="./images/dbms.png" alt="DBMS">
+            <div class="card-body">
+                <h2>DBMS</h2>
+                <p class="description">
+                    Learn SQL, database design, normalization and transactions.
+                </p>
+                <p class="details">⭐ 4.7 | Intermediate Level</p>
+                <button class="enroll-btn" onclick="enrollCourse('DBMS')">
+            Enroll Now
+        </button>
+            </div>
+        </div>
+
+        <!-- ADS -->
+        <div class="card">
+            <img src="./images/ads.png" alt="Advanced Data Structures">
+            <div class="card-body">
+                <h2>ADS</h2>
+                <p class="description">
+                    Learn advanced data structures, trees, graphs and algorithms.
+                </p>
+                <p class="details">⭐ 4.8 | Intermediate Level</p>
+                <button class="enroll-btn" onclick="enrollCourse('ADS')">
+            Enroll Now
+        </button>
+            </div>
+        </div>
+
+        <!-- DS -->
+        <div class="card">
+            <img src="./images/ds.png" alt="Data Structures">
+            <div class="card-body">
+                <h2>DS</h2>
+                <p class="description">
+                    Learn arrays, linked lists, stacks, queues and trees.
+                </p>
+                <p class="details">⭐ 4.9 | Beginner Level</p>
+                <button class="enroll-btn" onclick="enrollCourse('DS')">
+            Enroll Now
+        </button>
+            </div>
+        </div>
+
+        <!-- SE -->
+        <div class="card">
+            <img src="./images/se.png" alt="Software Engineering">
+            <div class="card-body">
+                <h2>SE</h2>
+                <p class="description">
+                    Learn software development life cycle, design and testing.
+                </p>
+                <p class="details">⭐ 4.7 | Intermediate Level</p>
+                <button class="enroll-btn" onclick="enrollCourse('SE')">
+            Enroll Now
+        </button>
+            </div>
+        </div>
+
+    </section>
+
+
+    <script>
+
+        function enrollCourse(courseName) {
+            const user = JSON.parse(localStorage.getItem("currentUser") || "null");
+            if (!user || !user.email) {
+                alert("Please log in to enroll in a course.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const key = user.email.toLowerCase();
+            const enrollments = JSON.parse(localStorage.getItem("enrollments") || "{}");
+            const enrolledCourses = Array.isArray(enrollments[key]) ? enrollments[key] : [];
+
+            if (enrolledCourses.includes(courseName)) {
+                alert("You are already enrolled in " + courseName);
+                return;
+            }
+
+            enrolledCourses.push(courseName);
+            enrollments[key] = enrolledCourses;
+            localStorage.setItem("enrollments", JSON.stringify(enrollments));
+            alert("Successfully enrolled in " + courseName + " 🎉");
+        }
+
+    </script>
+
+</body>
+
+</html>

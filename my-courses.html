@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learnify - My Courses</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #f5f7ff;
+        }
+        /* Navbar */
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: blue;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: black;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        
+        .nav-links a:hover {
+            color: blue;
+        }
+        /* Header */
+        
+        .page-header {
+            text-align: center;
+            padding: 45px 20px 25px;
+        }
+        
+        .page-header h1 {
+            color: blue;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            color: #555;
+        }
+        /* Courses */
+        
+        .courses-container {
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            padding: 30px 0 50px;
+        }
+        
+        .course-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            transition: 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .course-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .course-card h2 {
+            margin: 10px 0;
+        }
+        
+        .course-card p {
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .status {
+            display: inline-block;
+            background-color: #e7f7ed;
+            color: green;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .continue-btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: blue;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .continue-btn:hover {
+            background-color: darkblue;
+        }
+        /* Empty message */
+        
+        .empty-message {
+            text-align: center;
+            padding: 50px 20px;
+            display: none;
+        }
+        
+        .empty-message h2 {
+            color: #333;
+        }
+        
+        .empty-message p {
+            color: #666;
+        }
+        
+        .browse-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        /* Responsive */
+        
+        @media (max-width: 1000px) {
+            .courses-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .courses-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            Learnify
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="my-courses.html">My Courses</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Page Header -->
+    <section class="page-header">
+
+        <h1>My Courses</h1>
+
+        <p id="welcomeMessage">
+            Your enrolled courses
+        </p>
+
+    </section>
+
+
+    <!-- Enrolled Courses -->
+    <section class="courses-container" id="coursesContainer">
+    </section>
+
+
+    <!-- Empty Message -->
+    <div class="empty-message" id="emptyMessage">
+
+        <h2>No Courses Yet 📚</h2>
+
+        <p>
+            You haven't enrolled in any courses yet.
+        </p>
+
+        <a href="courses.html" class="browse-btn">
+        Browse Courses
+    </a>
+
+    </div>
+
+
+    <script>
+
+        const user = JSON.parse(localStorage.getItem("currentUser") || "null");
+
+        if (!user || !user.email) {
+            alert("Please log in first.");
+            window.location.href = "login.html";
+        } else {
+            document.getElementById("welcomeMessage").textContent =
+                "Welcome, " + (user.name || "User") + "! Here are your enrolled courses.";
+
+            const enrollments = JSON.parse(localStorage.getItem("enrollments") || "{}");
+            const enrolledCourses = enrollments[user.email.toLowerCase()] || [];
+            const container = document.getElementById("coursesContainer");
+            const emptyMessage = document.getElementById("emptyMessage");
+
+            const courseDetails = {
+                "Web Development": { icon: "💻", description: "Learn HTML, CSS, JavaScript and build modern websites." },
+                "Data Science": { icon: "📊", description: "Explore data analysis, visualization and machine learning." },
+                "UI/UX Design": { icon: "🎨", description: "Learn design principles and create stunning user interfaces." },
+                "Digital Marketing": { icon: "📱", description: "Learn SEO, social media and grow your brand." },
+                "Java": { icon: "☕", description: "Learn Java programming and object-oriented concepts." },
+                "Python": { icon: "🐍", description: "Learn Python programming and build projects." },
+                "C": { icon: "💻", description: "Learn C programming fundamentals." },
+                "C++": { icon: "⚙️", description: "Learn object-oriented programming with C++." },
+                "DBMS": { icon: "🗄️", description: "Learn database design and SQL." },
+                "Software Engineering": { icon: "🧩", description: "Learn software development processes and design." },
+                "Data Structures": { icon: "🌳", description: "Learn core data structures and algorithms." },
+                "Digital Electronics": { icon: "🔌", description: "Learn digital logic and electronic systems." }
+            };
+
+            if (!enrolledCourses.length) {
+                emptyMessage.style.display = "block";
+            } else {
+                enrolledCourses.forEach(function(courseName) {
+                    const course = courseDetails[courseName] || {
+                        icon: "📘", description: "Continue learning " + courseName + "."
+                    };
+                    const card = document.createElement("div");
+                    card.className = "course-card";
+
+                    const icon = document.createElement("div");
+                    icon.className = "course-icon";
+                    icon.textContent = course.icon;
+
+                    const heading = document.createElement("h2");
+                    heading.textContent = courseName;
+
+                    const description = document.createElement("p");
+                    description.textContent = course.description;
+
+                    const status = document.createElement("span");
+                    status.className = "status";
+                    status.textContent = "Enrolled";
+
+                    const button = document.createElement("button");
+                    button.className = "continue-btn";
+                    button.textContent = "Continue Learning";
+                    button.addEventListener("click", () => continueCourse(courseName));
+
+                    card.append(icon, heading, description, status, button);
+                    container.appendChild(card);
+                });
+            }
+        }
+
+        function continueCourse(courseName) {
+            if (courseName === "UI/UX Design") {
+                window.location.href = "uiux-course.html";
+            } else {
+                alert("Course content for " + courseName + " can be connected here.");
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
